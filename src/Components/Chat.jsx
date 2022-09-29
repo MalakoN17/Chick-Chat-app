@@ -2,34 +2,24 @@ import React, { useState, useEffect } from "react";
 import { dataBase } from "../Firebase";
 import SendMassage from "./SendMassage";
 import SignOut from "./SignOut";
+import {onSnapshot} from 'firebase/firestore'
 
 function Chat() {
   const [massages, setMassages] = useState([]);
-  const getFirebaseData = async () =>{
-    let response = await dataBase.collection('messages').orderBy('createdAt').limit(50).get()
-    let msg = []
-    response.forEach(doc =>{
-        let obj = {
-            id: doc.id,
-            text: doc.data().text,
-            photoURL: doc.data().photoURL
-        }
-        console.log(obj);
-        msg.push(obj)
-    })
-    setMassages(msg)
-  }
   useEffect(() => {
-    getFirebaseData()
+    dataBase.collection('messages').orderBy('createdAt').limit(50).onSnapshot(snapshot =>{
+      setMassages(snapshot.docs.map(doc => doc.data()))
+    })
   }, []);
+  console.log(massages);
   return (
     <div>
       <SignOut />
-      {massages.map(({ id, text, photoURL }) => {
+      {massages.map((elem) => {
         return (
-          <div key={id}>
-            <img src={photoURL} alt="user photo" />
-            <p>{text}</p>
+          <div key={elem?.id}>
+            <img src={elem?.photoURL} alt="user photo" />
+            <p>{elem?.text}</p>
           </div>
         );
       })}
