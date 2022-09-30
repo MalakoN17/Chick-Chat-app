@@ -1,3 +1,4 @@
+import './app.css'
 import SignIn from "./Components/SignIn";
 import {useAuthState} from 'react-firebase-hooks/auth'
 import {auth} from './Firebase'

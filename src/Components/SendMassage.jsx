@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
+import {scrollIntoView} from 'react-scroll-into-view'
+import { Button, Input } from "@mui/material";
 import firebase from "firebase/compat/app";
 import { dataBase, auth } from "../Firebase";
 function SendMassage() {
   const [msg, setMsg] = useState("");
-  let photoURL = auth.currentUser._delegate.photoURL
-  console.log(photoURL);
   const sendMassage = async (e) => {
     e.preventDefault();
-    const { uid } = auth.currentUser;
+    const { uid , photoURL } = auth.currentUser;
     await dataBase.collection("messages").add({
       text: msg,
       photoURL,
@@ -19,12 +19,12 @@ function SendMassage() {
   return (
     <div>
       <form onSubmit={sendMassage}>
-        <input
+        <Input
           value={msg}
           onChange={(e) => setMsg(e.target.value)}
           placeholder="massage..."
         />
-        <button type="submit">send</button>
+        <Button type="submit">send</Button>
       </form>
     </div>
   );
