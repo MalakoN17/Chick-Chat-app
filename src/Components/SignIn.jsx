@@ -9,7 +9,7 @@ function SignIn() {
         auth.signInWithPopup(provider)
     }
   return (
-    <>
+    
     <Container maxWidth="sm">
     <div style={{textAlign:'center'}}>
       <h1>welcome to Chick Chat</h1>
@@ -18,7 +18,7 @@ function SignIn() {
         <Button onClick={signInWithGoogle}>Sign-In with Google</Button>
     </div>
     </Container>
-    </>
+  
   )
 }
 

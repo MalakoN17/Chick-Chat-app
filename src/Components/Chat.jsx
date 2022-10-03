@@ -5,8 +5,10 @@ import SignOut from "./SignOut";
 import { onSnapshot } from "firebase/firestore";
 
 function Chat() {
+  const scroll = useRef()
   const [massages, setMassages] = useState([]);
   useEffect(() => {
+    console.log(scroll);
     dataBase
       .collection("messages")
       .orderBy("createdAt")
@@ -16,13 +18,13 @@ function Chat() {
       });
   }, []);
   return (
-    <div>
+    <div className="Chat-page">
       <SignOut />
       <div className="msgs">
         {massages.map((elem, index) => {
           return (
             <div>
-              <div key={index} className={`msg ${elem.uid == auth.currentUser.uid ? "sent" : "received"}`}>
+              <div key={index} className={`msg ${elem.uid === auth.currentUser.uid ? "sent" : "received"}`}>
                 <img src={elem?.photoURL} alt="user photo" />
                 <p>{elem?.text}</p>
               </div>
@@ -31,6 +33,7 @@ function Chat() {
         })}
       </div>
       <SendMassage/>
+      <div></div>
     </div>
   );
 }
