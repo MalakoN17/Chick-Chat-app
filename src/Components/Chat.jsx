@@ -33,7 +33,6 @@ function Chat() {
         })}
       </div>
       <SendMassage/>
-      <div></div>
     </div>
   );
 }
