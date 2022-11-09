@@ -2,7 +2,6 @@ import Head from "next/head";
 import React, { useContext } from "react";
 import { Context } from "../context/context";
 import LoginSignUp from "../components/LoginSignUp";
-import Chats from "../components/chats";
 export default function Auth() {
   const {setUserName, setSecret } = useContext(Context);
   return (
@@ -13,7 +12,6 @@ export default function Auth() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LoginSignUp />
-      {/* <Chats /> */}
     </div>
   );
 }
