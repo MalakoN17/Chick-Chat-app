@@ -6,8 +6,8 @@
 ### go live start chat - https://chick-chat-app.vercel.app
 
 ## Introduction
-A chat app where you can chat with friends and different people. 
-i used react chat engine package for sign up Log in and chat rooms . 
+A chat app where you can chat with friends and different people. <br/>
+i used react chat engine package for sign up Log in and chat rooms . <br/> 
 I managed my state with props and context    
 
 ## Technologies i used 
